@@ -1,0 +1,55 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: admin
+  Date: 07/04/2026
+  Time: 3:58 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>${reportTitle}</title>
+</head>
+<body>
+
+<h1>${reportTitle}</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Họ tên</th>
+        <th>Điểm</th>
+        <th>Xếp loại</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="sv" items="${studentList}" varStatus="loop">
+        <tr>
+            <td>${loop.index + 1}</td>
+            <td><c:out value="${sv.fullName}" /></td>
+            <td>${sv.score}</td>
+            <td>
+                <c:choose>
+                    <c:when test="${sv.score >= 90}">Xuất sắc</c:when>
+                    <c:when test="${sv.score >= 80}">Giỏi</c:when>
+                    <c:when test="${sv.score >= 70}">Khá</c:when>
+                    <c:when test="${sv.score >= 60}">Trung bình khá</c:when>
+                    <c:when test="${sv.score >= 50}">Trung bình</c:when>
+                    <c:otherwise>Yếu</c:otherwise>
+                </c:choose>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+
+</table>
+
+</body>
+</html>
+
